@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "schema": {
+      "name": "InnerlogicAudit_CL",
+      "description": "Innerlogic audit log events (one row per event), pulled from /api/v1/audit-events",
+      "columns": [
+        { "name": "TimeGenerated",     "type": "datetime", "description": "Event record time (recordedAt)" },
+        { "name": "EventId",           "type": "string",   "description": "Stable event ID; use for duplicate handling" },
+        { "name": "Sequence",          "type": "string",   "description": "Source ordering (64-bit integer kept as string)" },
+        { "name": "OccurredAt",        "type": "datetime", "description": "When the activity occurred" },
+        { "name": "RecordedAt",        "type": "datetime", "description": "When Innerlogic stored the event" },
+        { "name": "OrganizationId",    "type": "string",   "description": "Innerlogic organization ID (tenantId in the API)" },
+        { "name": "SchemaVersion",     "type": "int",      "description": "Per-event schema version" },
+        { "name": "Category",          "type": "string" },
+        { "name": "Action",            "type": "string" },
+        { "name": "Outcome",           "type": "string",   "description": "SUCCESS, FAILURE or DENIED" },
+        { "name": "Description",       "type": "string" },
+        { "name": "ActorType",         "type": "string" },
+        { "name": "ActorUserId",       "type": "string" },
+        { "name": "ActorMemberId",     "type": "string" },
+        { "name": "ActorCredentialId", "type": "string" },
+        { "name": "ActorEmail",        "type": "string" },
+        { "name": "ActorDisplayName",  "type": "string" },
+        { "name": "ResourceType",      "type": "string" },
+        { "name": "ResourceId",        "type": "string" },
+        { "name": "SrcIpAddr",         "type": "string",   "description": "source.ip" },
+        { "name": "SrcUserAgent",      "type": "string",   "description": "source.userAgent" },
+        { "name": "AuthMethod",        "type": "string",   "description": "source.authMethod" },
+        { "name": "RequestId",         "type": "string" },
+        { "name": "CorrelationId",     "type": "string" },
+        { "name": "Metadata",          "type": "dynamic",  "description": "Structured activity details" },
+        { "name": "RawEvent",          "type": "dynamic",  "description": "Full original event object, including unknown future fields" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "POLL_SCHEDULE": "0 * * * * *",
+    "INNERLOGIC_API_BASE": "https://node-v3.innerlogic-api.com",
+    "INNERLOGIC_AUDIT_TOKEN": "ilaudit_REPLACE_ME",
+    "INNERLOGIC_START_UTC": "2026-10-01T00:00:00Z",
+    "DCE_ENDPOINT": "https://<dce-name>.<region>.ingest.monitor.azure.com",
+    "DCR_IMMUTABLE_ID": "dcr-REPLACE_ME",
+    "DCR_STREAM_NAME": "Custom-InnerlogicAudit",
+    "PAGE_LIMIT": "500"
+  }
+}
