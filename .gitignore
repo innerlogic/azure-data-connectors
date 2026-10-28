@@ -6,3 +6,4 @@ build/
 dist/
 local.settings.json
 .pytest_cache/
+scratch/
