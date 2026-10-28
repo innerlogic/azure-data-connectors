@@ -27,7 +27,15 @@ jobs:
       - name: Compile Bicep and check the committed ARM template is current
         run: |
           az bicep build --file infra/main.bicep --outfile /tmp/azuredeploy.json
-          diff <(python -m json.tool /tmp/azuredeploy.json) <(python -m json.tool infra/azuredeploy.json)
+          # Ignore 'metadata': it embeds the Bicep compiler version and a hash, which differ between machines.
+          python - <<'PY'
+          import json, sys
+          fresh = json.load(open("/tmp/azuredeploy.json")); fresh.pop("metadata", None)
+          committed = json.load(open("infra/azuredeploy.json")); committed.pop("metadata", None)
+          if fresh != committed:
+              sys.exit("infra/azuredeploy.json is out of date: run 'az bicep build --file infra/main.bicep --outfile infra/azuredeploy.json' and commit it")
+          print("ARM template is current")
+          PY
       - name: Publish release asset
         env:
           GH_TOKEN: ${{ github.token }}

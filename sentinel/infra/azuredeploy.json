@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.48.1.52935",
-      "templateHash": "13885119342801386287"
+      "templateHash": "9365061977281855251"
     }
   },
   "parameters": {
@@ -268,7 +268,7 @@
           "destinations": [
             "sentinelWorkspace"
           ],
-          "transformKql": "source | extend TimeGenerated = coalesce(recordedAt, occurredAt, now()) | project TimeGenerated, EventId = eventId, Sequence = sequence, OccurredAt = occurredAt, RecordedAt = recordedAt, OrganizationId = tenantId, SchemaVersion = schemaVersion, Category = category, Action = action, Outcome = outcome, Description = description, ActorType = tostring(actor.type), ActorUserId = tostring(actor.userId), ActorMemberId = tostring(actor.memberId), ActorCredentialId = tostring(actor.credentialId), ActorEmail = tostring(actor.email), ActorDisplayName = tostring(actor.displayName), ResourceType = tostring(resource.type), ResourceId = tostring(resource.id), SrcIpAddr = tostring(source.ip), SrcUserAgent = tostring(source.userAgent), AuthMethod = tostring(source.authMethod), RequestId = requestId, CorrelationId = correlationId, Metadata = metadata, RawEvent = rawEvent",
+          "transformKql": "source | extend TimeGenerated = iif(isnotnull(recordedAt), recordedAt, iif(isnotnull(occurredAt), occurredAt, now())) | project TimeGenerated, EventId = eventId, Sequence = sequence, OccurredAt = occurredAt, RecordedAt = recordedAt, OrganizationId = tenantId, SchemaVersion = schemaVersion, Category = category, Action = action, Outcome = outcome, Description = description, ActorType = tostring(actor.type), ActorUserId = tostring(actor.userId), ActorMemberId = tostring(actor.memberId), ActorCredentialId = tostring(actor.credentialId), ActorEmail = tostring(actor.email), ActorDisplayName = tostring(actor.displayName), ResourceType = tostring(resource.type), ResourceId = tostring(resource.id), SrcIpAddr = tostring(source.ip), SrcUserAgent = tostring(source.userAgent), AuthMethod = tostring(source.authMethod), RequestId = requestId, CorrelationId = correlationId, Metadata = metadata, RawEvent = rawEvent",
           "outputStream": "Custom-InnerlogicAudit_CL"
         }
       ]
